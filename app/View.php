@@ -1,13 +1,16 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types = 1);
 
 namespace App;
 
 use App\Exceptions\ViewNotFoundException;
+use App\ViewHelper;
 
 class View
 {
+    use ViewHelper;
+
     public function __construct(
         protected string $view,
         protected array $params = []
@@ -23,11 +26,11 @@ class View
     {
         $viewPath = VIEW_PATH . '/' . $this->view . '.php';
 
-        if (! file_exists($viewPath)) {
+        if (!file_exists($viewPath)) {
             throw new ViewNotFoundException();
         }
 
-        foreach($this->params as $key => $value) {
+        foreach ($this->params as $key => $value) {
             $$key = $value;
         }
 
@@ -47,4 +50,5 @@ class View
     {
         return $this->params[$name] ?? null;
     }
+
 }

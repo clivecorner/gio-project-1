@@ -1,0 +1,9 @@
+create table transactions(
+	id int unsigned primary key auto_increment,
+	the_date varchar(255),
+    the_check varchar(255),
+    the_description varchar(255),
+    the_amount varchar(255)
+    );
+
+    
